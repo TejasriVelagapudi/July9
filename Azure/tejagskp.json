@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "value": "1d1d6cdc-0975-4300-a64c-12d2fdaf8be2"
+    },
+    "name": {
+      "value": "Tejagsk143"
+    },
+    "name1": {
+      "value": "Tejagsk144"
+    },
+    "name2": {
+      "value": "Tejagsk146"
+    },
+    "location": {
+      "value": "Central US"
+    },
+    "hostingPlanName": {
+      "value": "teskgskplan"
+    },
+    "hostingPlanName1": {
+      "value": "teskgskplan2"
+    },
+    "serverFarmResourceGroup": {
+      "value": "RG4"
+    },
+    "alwaysOn": {
+      "value": true
+    },
+    "sku": {
+      "value": "Standard"
+    },
+    "skuCode": {
+      "value": "S1"
+    },
+    "workerSize": {
+      "value": "0"
+    },
+    "workerSizeId": {
+      "value": "0"
+    },
+    "numberOfWorkers": {
+      "value": "1"
+    },
+    "currentStack": {
+      "value": "dotnet"
+    },
+    "phpVersion": {
+      "value": "OFF"
+    },
+    "netFrameworkVersion": {
+      "value": "v4.0"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "value": "1d1d6cdc-0975-4300-a64c-12d2fdaf8be2"
+    },
+    "name": {
+      "value": "qwertyfdas"
+    },
+    "location": {
+      "value": "Central US"
+    },
+    "hostingPlanName": {
+      "value": "Demokey435"
+    },
+    "serverFarmResourceGroup": {
+      "value": "NetworkWatcherRG"
+    },
+    "alwaysOn": {
+      "value": true
+    },
+    "currentStack": {
+      "value": "dotnetcore"
+    },
+    "phpVersion": {
+      "value": "OFF"
+    },
+    "errorLink": {
+      "value": "https://qwertyfdas.scm.azurewebsites.net/detectors?type=tools&name=eventviewer"
+    }
+  }
+}

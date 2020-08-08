@@ -1,0 +1,189 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "rgName": {
+      "type": "string"
+    },
+    "rgLocation": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "skuCode": {
+      "type": "string"
+    },
+    "workerSize": {
+      "type": "string"
+    },
+    "workerSizeId": {
+      "type": "string"
+    },
+    "numberOfWorkers": {
+      "type": "string"
+    },
+    "tagsArray": {
+      "type": "object"
+    },
+    "requestSource": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "subscriptionId": {
+      "type": "string"
+    },
+    "alwaysOn": {
+      "type": "bool"
+    },
+    "currentStack": {
+      "type": "string"
+    },
+    "phpVersion": {
+      "type": "string"
+    },
+    "errorLink": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/resourceGroups",
+      "apiVersion": "2020-06-01",
+      "name": "[parameters('rgName')]",
+      "location": "[parameters('rgLocation')]",
+      "properties": {}
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-06-01",
+      "name": "Deploymentmain",
+      "resourceGroup": "[parameters('rgName')]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/resourceGroups/', parameters('rgName'))]"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Web/serverfarms",
+              "apiVersion": "2018-02-01",
+              "name": "appservice1",
+              "location": "Central US",
+              "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
+                "capacity": 1
+              },
+              "kind": "app",
+              "properties": {
+                "perSiteScaling": false,
+                "maximumElasticWorkerCount": 1,
+                "isSpot": false,
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+              }
+            },
+            {
+              "type": "Microsoft.Web/serverfarms",
+              "apiVersion": "2018-02-01",
+              "name": "appservice2",
+              "location": "Central US",
+              "sku": {
+                "name": "S1",
+                "tier": "Standard",
+                "size": "S1",
+                "family": "S",
+                "capacity": 1
+              },
+              "kind": "app",
+              "properties": {
+                "perSiteScaling": false,
+                "maximumElasticWorkerCount": 1,
+                "isSpot": false,
+                "reserved": false,
+                "isXenon": false,
+                "hyperV": false,
+                "targetWorkerCount": 0,
+                "targetWorkerSizeId": 0
+              }
+            },
+            {
+              "apiVersion": "2018-11-01",
+              "name": "appservice1234",
+              "type": "Microsoft.Web/sites",
+              "location": "[parameters('location')]",
+              "tags": {},
+              "dependsOn": ["microsoft.insights/components/appservice1234"],
+              "properties": {
+                "name": "[parameters('name')]",
+                "siteConfig": {
+                  "appSettings": [
+                    {
+                      "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
+                      "value": "[reference('microsoft.insights/components/appservice1234', '2015-05-01').InstrumentationKey]"
+                    },
+                    {
+                      "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
+                      "value": "[reference('microsoft.insights/components/appservice1234', '2015-05-01').ConnectionString]"
+                    },
+                    {
+                      "name": "ApplicationInsightsAgent_EXTENSION_VERSION",
+                      "value": "~2"
+                    },
+                    {
+                      "name": "XDT_MicrosoftApplicationInsights_Mode",
+                      "value": "default"
+                    },
+                    {
+                      "name": "ANCM_ADDITIONAL_ERROR_PAGE_LINK",
+                      "value": "[parameters('errorLink')]"
+                    }
+                  ],
+                  "metadata": [
+                    {
+                      "name": "CURRENT_STACK",
+                      "value": "[parameters('currentStack')]"
+                    }
+                  ],
+                  "phpVersion": "[parameters('phpVersion')]",
+                  "alwaysOn": "[parameters('alwaysOn')]"
+                },
+                "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
+                "clientAffinityEnabled": true
+              }
+            },
+            {
+              "apiVersion": "2015-05-01",
+              "name": "appservice1234",
+              "type": "microsoft.insights/components",
+              "location": "centralus",
+              "tags": {},
+              "properties": {
+                "ApplicationId": "appservice1234",
+                "Request_Source": "IbizaWebAppExtensionCreate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}

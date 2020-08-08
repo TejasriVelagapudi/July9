@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "rgName": {
+      "value": "RG3"
+    },
+    "rgLocation": {
+      "value": "Central US"
+    },
+    "name": {
+      "value": "tejasp"
+    },
+    "location": {
+      "value": "Central US"
+    },
+    "numberOfWorkers": {
+      "value": "1"
+    },
+    "sku": {
+      "value": "PremiumV2"
+    },
+    "skuCode": {
+      "value": "P1v2"
+    },
+    "workerSize": {
+      "value": "3"
+    },
+    "workerSizeId": {
+      "value": "3"
+    },
+    "type": {
+      "value": "web"
+    },
+    "tagsArray": {
+      "value": {}
+    },
+    "requestSource": {
+      "value": "IbizaAIExtension"
+    },
+    "subscriptionId": {
+      "value": "1d1d6cdc-0975-4300-a64c-12d2fdaf8be2"
+    },
+    "alwaysOn": {
+      "value": true
+    },
+    "currentStack": {
+      "value": "dotnetcore"
+    },
+    "phpVersion": {
+      "value": "OFF"
+    },
+    "errorLink": {
+      "value": "https://qwertyfdas.scm.azurewebsites.net/detectors?type=tools&name=eventviewer"
+    }
+  }
+}
